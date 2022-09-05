@@ -1,0 +1,67 @@
+Analisis Sintáctico Descendente
+
+Reglas gramaticales
+
+si : s ;
+
+s : PA s PC s
+  |
+  ;
+
+Entrada: (())()
+
+Acciones posibles:
+ - Derivar
+ - Match
+
+$ si              (())() $ Derivar
+$ s               (())() $ Derivar
+$ s PC s PA       (())() $ Match
+$ s PC s           ())() $ Derivar
+$ s PC s PC s PA   ())() $ Match
+$ s PC s PC s       ))() $ Derivar
+$ s PC s PC         ))() $ Match
+$ s PC s             )() $ Derivar
+$ s PC               )() $ Match
+$ s                   () $ Derivar
+$ s PC s PA           () $ Match
+$ s PC s               ) $ Derivar
+$ s PC                 ) $ Match
+$ s                      $ Derivar
+$                        $ Ok
+
+
+Entrada: (()()
+
+$ si              (()() $ Derivar
+$ s               (()() $ Derivar
+$ s PC s PA       (()() $ Match
+$ s PC s           ()() $ Derivar
+$ s PC s PC s PA   ()() $ Match
+$ s PC s PC s       )() $ Derivar
+$ s PC s PC         )() $ Match
+$ s PC s             () $ Derivar
+$ s PC s PC s PA     () $ Match
+$ s PC s PC s         ) $ Derivar
+$ s PC s PC           ) $ Match
+$ s PC s                $ Derivar
+$ s PC                  $ ERROR
+
+
+Entrada: (()))
+
+$ si              (())) $ Derivar
+$ s               (())) $ Derivar
+$ s PC s PA       (())) $ Match
+$ s PC s           ())) $ Derivar
+$ s PC s PC s PA   ())) $ Match
+$ s PC s PC s       ))) $ Derivar
+$ s PC s PC         ))) $ Match
+$ s PC s             )) $ Derivar
+$ s PC               )) $ Match
+$ s                   ) $ Derivar
+$                     ) $ ERROR
+
+
+
+
