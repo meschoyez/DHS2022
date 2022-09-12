@@ -63,5 +63,70 @@ $ s                   ) $ Derivar
 $                     ) $ ERROR
 
 
+===================================================
+
+Analisis Sintáctico Ascendente
+
+Reglas gramaticales
+
+si : s ;
+
+s : PA s PC s
+  |
+  ;
+
+Entrada: (())()
+
+Acciones posibles:
+ - Desplazar
+ - Reducir
+
+
+$                (())() $ Desplazar
+$ (               ())() $ Desplazar
+$ ( (              ))() $ Reducir
+$ ( ( s            ))() $ Desplazar
+$ ( ( s )           )() $ Reducir
+$ ( ( s ) s         )() $ Reducir
+$ ( s               )() $ Desplazar
+$ ( s )              () $ Desplazar
+$ ( s ) (             ) $ Reducir
+$ ( s ) ( s           ) $ Desplazar
+$ ( s ) ( s )           $ Reducir
+$ ( s ) ( s ) s         $ Reducir
+$ ( s ) s               $ Reducir
+$ s                     $ Reducir
+$ si                    $ Ok
+
+
+Entrada: (()()
+
+$                 (()() $ Desplazar
+$ (                ()() $ Desplazar
+$ ( (               )() $ Reducir
+$ ( ( s             )() $ Desplazar
+$ ( ( s )            () $ Desplazar
+$ ( ( s ) (           ) $ Reducir
+$ ( ( s ) ( s         ) $ Desplazar
+$ ( ( s ) ( s )         $ Reducir
+$ ( ( s ) ( s ) s       $ Reducir
+$ ( ( s ) s             $ Reducir
+$ ( s                   $ ERROR
+
+
+Entrada: (()))
+
+$                 (())) $ Desplazar
+$ (                ())) $ Desplazar
+$ ( (               ))) $ Reducir
+$ ( ( s             ))) $ Desplazar
+$ ( ( s )            )) $ Reducir
+$ ( ( s ) s          )) $ Reducir
+$ ( s                )) $ Desplazar
+$ ( s )               ) $ Reducir
+$ ( s ) s             ) $ Reducir
+$ s                   ) $ Reducir
+$ si                  ) $ ERROR
+
 
 
