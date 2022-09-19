@@ -9,6 +9,8 @@ LLA : '{' ;
 LLC : '}' ;
 PYC : ';' ;
 ASSIG : '=' ;
+SUMA : '+' ;
+MULT : '*' ;
 
 INT : 'int' ;
 
@@ -40,5 +42,28 @@ declaracion : tdato ID
 
 tdato : INT
       ;
+
+itop : oparit itop
+     |
+     ;
+// c = a + b + d + f / r * q
+oparit : exp ;
+
+exp : term t ;
+
+term : factor f ;
+
+t : SUMA term t
+  |
+  ;
+
+factor : ID
+       | NUMERO
+       | PA exp PC
+       ;
+
+f : MULT factor f
+  |
+  ;
 
 // bloquewhile : PA comparacion/opal PC instruccion ;
