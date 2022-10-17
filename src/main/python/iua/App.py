@@ -3,6 +3,7 @@ from antlr4 import *
 from compiladoresLexer  import compiladoresLexer
 from compiladoresParser import compiladoresParser
 from MiListener import MiListener
+from Caminante import Caminante
 
 def main(argv):
     # archivo = "input/entrada.txt"q
@@ -17,7 +18,9 @@ def main(argv):
     miListener = MiListener()
     parser.addParseListener(miListener)
     tree = parser.programa()
-    print(tree.toStringTree(recog=parser))
+    caminante = Caminante()
+    caminante.visitPrograma(tree)
+    # print(tree.toStringTree(recog=parser))
 
 if __name__ == '__main__':
     main(sys.argv)
