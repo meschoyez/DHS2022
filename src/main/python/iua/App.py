@@ -5,9 +5,9 @@ from compiladoresParser import compiladoresParser
 from MiListener import MiListener
 
 def main(argv):
-    # archivo = "input/entrada.txt"
+    # archivo = "input/entrada.txt"q
     # archivo = "input/parentesis.txt"
-    archivo = "input/aritmetica.txt"
+    archivo = "input/sinterminar.c"
     if len(argv) > 1 :
         archivo = argv[1]
     input = FileStream(archivo)
@@ -16,7 +16,7 @@ def main(argv):
     parser = compiladoresParser(stream)
     miListener = MiListener()
     parser.addParseListener(miListener)
-    tree = parser.itop()
+    tree = parser.programa()
     print(tree.toStringTree(recog=parser))
 
 if __name__ == '__main__':
