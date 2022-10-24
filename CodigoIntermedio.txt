@@ -1,0 +1,72 @@
+Código Intermedio
+
+Código de Tres Direcciones (TAC)
+
+x = y <op> z
+
+x = y
+x = 5
+jmp x
+label l1
+nop
+
+ADD AX,BX,CX
+MOV AX,BX
+
+
+---------------
+
+x = 5 * y - z / 4 + w;
+
+t0 = 5 * y
+t1 = z / 4
+t2 = t0 - t1
+t3 = t2 + w
+x = t3
+
+y = (x - 1) * (x - 1)
+
+t0 = x - 1
+t1 = x - 1
+t2 = t0 * t1
+y = t2
+
+OPT
+t0 = x - 1
+t = t0 * t0
+
+-----------------------
+
+if (x > 0)
+    y = x
+else
+    y = -x
+
+t0 = x > 0
+ifnot t0 jump l0
+y = x
+jump l1
+label l0
+y = -x
+label l1
+
+----------------
+
+for (i=0; i < x; i++)
+    y += 2 * x
+
+i = 0
+label l0
+t0 = i < x
+ifnot t0 jump l1
+t1 = 2 * x
+y = y + t1
+i = i + 1
+jump l0
+label 1
+
+
+---------------
+while (x < 10)
+    y = x++ * 2;
+
